@@ -93,7 +93,7 @@ Here's what's actually inside that relay:
                Co., Ltd.
 ```
 
-Fourteen nodes. Six countries. An indie content blocker, an anonymous Delaware LLC, consumer security brands, a Russian search engine, a Swiss-Dubai-Vietnam cybersecurity firm, Google API endpoints, and a Taiwanese state telecom — all operating as approved providers inside Apple's privacy layer.
+Fourteen endpoints. Six countries. An indie content blocker, an anonymous Delaware LLC, consumer security brands, a Russian search engine, a Swiss-Dubai-Vietnam cybersecurity firm, Google API endpoints, and a Taiwanese state telecom — all operating as approved providers inside Apple's privacy layer.
 
 This matters because **Apple's OHTTP relay is shared infrastructure.** Every iPhone using Live Caller ID Lookup connects through the same relay to the same approved providers. The question isn't whether this affected one phone. It's how many.
 
@@ -164,7 +164,7 @@ App Store is public: ID `6741771102` — same developer publishes "Pray Bible: D
 
 ## The Bigger Picture
 
-This isn't a proof of concept. These findings come from ordinary production iPhones — not jailbroken, not modified, purchased from carriers, running current iOS. Two devices. Two chipset generations (A14, A16). Same relay nodes. Same UUIDs. Same cloud.
+This isn't a proof of concept. These findings come from ordinary production iPhones.... not jailbroken, not modified, purchased from carriers, running current iOS. Three devices. Three chipset generations. Same relay nodes. Same UUIDs. Same cloud.
 
 None of this is visible to the user. No alerts. No prompts. No battery drain. No suspicious apps. The phone looks and feels completely normal. The cloud operates entirely inside Apple's trusted infrastructure, carried by Apple's own signed processes. There is nothing for a user to notice, nothing for an antivirus to flag, nothing for a network monitor to catch.
 
@@ -187,13 +187,9 @@ Sysdiagnose March 21, 2026 — iPhone 12 (A14, iOS 26.3.1). 62 tracev3 files sca
 
 UUIDs are identical between March 19 and March 21 captures. Persistent, not transient.
 
-Complete offsets, 18 UUIDs, 4 session keys, full IOC list: [`appendix/`](appendix/)
-
 ---
 
 Joseph Goydish II — Caught in the cloud no one could see but everyone could feel.
 fr0mthecloud@proton.me
 
 ---
-
-*The infrastructure is live. The shell companies are serving keys. The Bible app company is real. Verify it yourself.*
