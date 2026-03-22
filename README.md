@@ -1,4 +1,4 @@
-# Pray, Bible, Spy
+# The Middleman
 ### Shell Companies Inside Apple's Privacy Relay
 
 > *An anonymous Delaware LLC publishes a Bible prayer app, a daily journal, and a caller ID tool on the App Store. That entity operates encrypted relay infrastructure inside Apple's privacy network. That relay terminates at Taiwan Mobile Co., Ltd.*
@@ -31,6 +31,38 @@ StopScam is not alone.
 
 ---
 
+## The Other Providers
+
+### kaylees.site — Wipr Content Blocker (Kaylee Calderolla)
+
+Public records show kaylees.site belongs to **Kaylee Calderolla**, an independent iOS developer known for **Wipr 2** — a Safari content blocker with over a decade on the App Store. Wipr 2 includes a feature called **Filtr** that uses Apple's iOS 26 URL Filters API to block content at the network level across all apps. That API uses the same OHTTP/PIR infrastructure, which explains why `pir.kaylees.site` appears in the relay as an `ObliviousHopFallback` endpoint.
+
+Unlike StopScam LLC, this is a publicly identifiable developer with a documented product history. The presence of kaylees.site in the relay is consistent with legitimate URL Filter provider enrollment. What remains unclear is whether the traffic observed on this channel is solely Filtr content blocking or whether something else is riding a legitimate provider's relay presence.
+
+### Pepper AI / Aura (pepperai.aurasvc.io)
+
+**Aura** is a major US consumer security company — parent of Hotspot Shield, Identity Guard, and Betternet. Their `urlfilter.pepperai.aurasvc.io` endpoint appears in the relay in the same `ObliviousHopFallback` chain as the other providers. The `urlfilter` prefix suggests content filtering — a function that requires inspecting data passing through the relay. Present in 5 of 15 Persist files.
+
+### AutoSec / Uney GmbH (issuer.autosec.com)
+
+**AutoSec** is published by developer **Hieu Van** (App Store Developer ID 1876492156) under copyright of **Uney GmbH** — a company registered at Baarerstrasse 25, 6300 Zug, Switzerland, with additional offices on Sheikh Zayed Road in Dubai and operations in Ho Chi Minh City, Vietnam. Uney also produces **ShieldNet 360** (enterprise cybersecurity) and **SkyTrack** (autonomous vehicle mission platform).
+
+AutoSec's own privacy policy states the app is operated by "The Legal Entity to be Confirmed." It collects device identifiers, location data, IP addresses, call/message metadata, contact lists, and browsing behavior. Data is shared with "third party clients, agencies and networks" and transferred to countries "including but not limited to India." Both primary and fallback OHTTP hop entries appear in the relay.
+
+### Carrément (antispam.carrement.ai)
+
+**Carrément** is a small company at 18 Rue Bailey, 14000 Caen, France. Its public-facing product is **DialogPro** (dialogpro.ai) — an "intelligent answering service." No named team members. Minimal web presence. Hosted on AWS Canada. The `antispam` subdomain is consistent with call-handling or spam-filtering services. Single appearance in the relay.
+
+### Yandex (ios-service.cid.yandex.net)
+
+**Yandex** — Russia's largest search engine and technology company — operates a caller ID service for iOS. Both primary (`ObliviousHop`) and fallback (`ObliviousHopFallback`) entries appear in the relay with two distinct UUIDs and session keys. Yandex is subject to Russian Federation data access laws.
+
+### Taiwan Mobile (osbstage.twmsolution)
+
+**Taiwan Mobile Co., Ltd.** — one of Taiwan's three major telecommunications carriers. The terminal node. UUID `C56B1AED-20FE-4B7D-B1EA-D791DA57A549` is persistent across captures. The `osbstage` prefix suggests a staging backend (Oracle Service Bus or similar). Present in 4 of 15 Persist files and identical between March 19 and March 21 captures.
+
+---
+
 ## The Invisible Cloud
 
 Here's what Apple's privacy architecture promises:
@@ -51,9 +83,9 @@ Here's what's actually inside that relay:
      ┌────────┬───────┼───────┬────────┐
      v        v       v       v        v
   kaylees  StopScam  Pepper  Yandex  AutoSec
-  .site    .ai       AI      (Russia) .com
-  (anon)   (Bible    (Aura)
-            app)
+  .site    .ai       AI      (Russia) (Zug/
+  (Wipr)   (Bible    (Aura)           Dubai/
+            app)                      Vietnam)
      │        │       │       │        │
      └────────┴───────┼───────┴────────┘
                       v
@@ -61,23 +93,21 @@ Here's what's actually inside that relay:
                Co., Ltd.
 ```
 
-Fourteen nodes. Six countries. Shell companies, a Russian search engine, consumer security brands, Google API endpoints, and a Taiwanese state telecom — all operating as approved providers inside Apple's privacy layer.
+Fourteen nodes. Six countries. An indie content blocker, an anonymous Delaware LLC, consumer security brands, a Russian search engine, a Swiss-Dubai-Vietnam cybersecurity firm, Google API endpoints, and a Taiwanese state telecom — all operating as approved providers inside Apple's privacy layer.
 
-This matters because **Apple's OHTTP relay is shared infrastructure.** Every iPhone using Live Caller ID Lookup connects through the same relay to the same approved providers. If StopScam LLC and kaylees.site are approved — and they are, serving live cryptographic keys right now — then any device routed through them has its privacy stripped by entities that exist on paper only.
-
-The question isn't whether this affected one phone. It's how many.
+This matters because **Apple's OHTTP relay is shared infrastructure.** Every iPhone using Live Caller ID Lookup connects through the same relay to the same approved providers. The question isn't whether this affected one phone. It's how many.
 
 | # | Node | Entity | Country |
 |---|------|--------|---------|
 | 1 | `osbstage.twmsolution` | Taiwan Mobile Co., Ltd. | Taiwan |
-| 2 | `kaylees.site` | Anonymous (WHOIS privacy) | Unknown |
+| 2 | `kaylees.site` | Kaylee Calderolla (Wipr / Filtr) | Italy/Intl |
 | 3 | `stopscam.ai` | StopScam LLC (anon Delaware) | USA (on paper) |
 | 4 | `pepperai.aurasvc.io` | Aura (Hotspot Shield, Identity Guard) | USA |
 | 5-6 | `ios-service.cid.yandex.net` | Yandex | Russia |
-| 7-8 | `issuer.autosec.com` | AutoSec | Unknown |
+| 7-8 | `issuer.autosec.com` | Uney GmbH (Zug/Dubai/HCMC) | Switzerland |
 | 9-11 | `*.googleapis.com` | Google (Safe Browsing, Gemini, AI Platform) | USA |
 | 12 | `privacy-pass-issuer-eu.truecaller.com` | Truecaller | Sweden |
-| 13 | `antispam.carrement.ai` | Unknown (AWS Canada) | Canada |
+| 13 | `antispam.carrement.ai` | Carrément (Caen, France) | France |
 | 14 | `caller-id-issuer.nordvpn.com` | NordVPN | Panama/Lithuania |
 
 ---
@@ -97,13 +127,13 @@ The `networkserviceproxy` binary itself contains the routing code:
 0x005399:  ObliviousHopFallback-%@
 ```
 
-At runtime, `%@` is filled with `kaylees.site`, `stopscam.ai`, `pepperai.aurasvc.io`, `ios-service.cid.yandex.net`. Apple's own code, routing to shell companies, on your phone.
+At runtime, `%@` is filled with provider domains — `stopscam.ai`, `pepperai.aurasvc.io`, `kaylees.site`, `ios-service.cid.yandex.net`. Apple's own code, routing to these providers, on your phone.
 
 ---
 
 ## Six Countries, One Cloud
 
-Taiwan. Delaware. Sweden. Russia. Canada. The United States. The cloud touches all of them. Taiwan sees Taiwan Mobile. Delaware sees a corporate filing. Sweden sees Truecaller. Russia sees Yandex. Nobody sees the whole cloud. No single entity — public or private — has scope over more than one piece. That's what makes this difficult to surface and even harder to put an end to.
+Taiwan. Delaware. Switzerland. Russia. France. Sweden. The cloud touches all of them. Taiwan sees Taiwan Mobile. Delaware sees a corporate filing. Zug sees a GmbH. Russia sees Yandex. Caen sees a small answering service. Stockholm sees Truecaller. Nobody sees the whole cloud. No single entity — public or private — has scope over more than one piece. That's what makes this difficult to surface and even harder to put an end to.
 
 ---
 
@@ -115,7 +145,7 @@ The infrastructure is live. Right now. Three commands prove two things at once.
 # 1. StopScam LLC is serving Privacy Pass tokens — proving Apple approved them for the relay
 curl -s https://pir.stopscam.ai/.well-known/private-token-issuer-directory | python3 -m json.tool
 
-# 2. kaylees.site is too — a second anonymous entity, also Apple-approved
+# 2. kaylees.site is too — Wipr content blocker developer, Apple-approved URL Filter provider
 curl -s https://pir.kaylees.site/.well-known/private-token-issuer-directory | python3 -m json.tool
 
 # 3. StopScam LLC is serving OHTTP gateway encryption keys — the actual relay endpoint
@@ -161,7 +191,8 @@ Complete offsets, 18 UUIDs, 4 session keys, full IOC list: [`appendix/`](appendi
 
 ---
 
-Joseph Goydish II — independent security researcher. I was caught in the cloud no one could see but everyone could feel. fr0mthecloud@proton.me
+Joseph Goydish II — Caught in the cloud no one could see but everyone could feel.
+fr0mthecloud@proton.me
 
 ---
 
