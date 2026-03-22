@@ -1,4 +1,4 @@
-# The Middleman
+# The Middlemen
 ### Shell Companies Inside Apple's Privacy Relay
 
 > *An anonymous Delaware LLC publishes a Bible prayer app, a daily journal, and a caller ID tool on the App Store. That entity operates encrypted relay infrastructure inside Apple's privacy network. That relay terminates at Taiwan Mobile Co., Ltd.*
