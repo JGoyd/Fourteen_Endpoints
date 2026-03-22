@@ -35,7 +35,7 @@ StopScam is not alone.
 
 ### kaylees.site — Wipr Content Blocker 
 
-Public records show kaylees.site belongs to **Kaylee Calderolla**, an independent iOS developer known for **Wipr 2** — a Safari content blocker with over a decade on the App Store. Wipr 2 includes a feature called **Filtr** that uses Apple's iOS 26 URL Filters API to block content at the network level across all apps. That API uses the same OHTTP/PIR infrastructure, which explains why `pir.kaylees.site` appears in the relay as an `ObliviousHopFallback` endpoint.
+Public records show kaylees.site belongs to an independent iOS developer known for **Wipr 2** — a Safari content blocker with over a decade on the App Store. Wipr 2 includes a feature called **Filtr** that uses Apple's iOS 26 URL Filters API to block content at the network level across all apps. That API uses the same OHTTP/PIR infrastructure, which explains why `pir.kaylees.site` appears in the relay as an `ObliviousHopFallback` endpoint.
 
 Unlike StopScam LLC, this is a publicly identifiable developer with a documented product history. The presence of kaylees.site in the relay is consistent with legitimate URL Filter provider enrollment. What remains unclear is whether the traffic observed on this channel is solely Filtr content blocking or whether something else is riding a legitimate provider's relay presence.
 
