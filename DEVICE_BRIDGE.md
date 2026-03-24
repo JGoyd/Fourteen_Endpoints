@@ -6,13 +6,13 @@
 
 Two iPhones. Two different models. Two different chipsets. Same implant. Same certificates. Same command server. Same you-can't-see-it.
 
-This is a companion to [Fourteen Endpoints](https://github.com/JGoyd/Fourteen_Endpoints) and [Pray-Bible-Spy](https://github.com/JGoyd/Pray-Bible-Spy). Those documented what's in the relay. This documents what's in the phone — and why it can't be spyware.
+This is a companion to [Fourteen Endpoints](https://github.com/JGoyd/Fourteen_Endpoints) . It documented what's in the relay. This documents what's in the phone, and why it can't be spyware.
 
 ---
 
 ## Why This Isn't Spyware
 
-Pegasus, Predator, Candiru — they exploit vulnerabilities to get root. They run as processes. They don't survive a factory reset. They don't have Apple's keys.
+Pegasus, Predator, Candiru.... they exploit vulnerabilities to get root. They run as processes. They don't survive a factory reset. They don't have Apple's keys.
 
 What's on these phones operates **inside Apple's own platform** using Apple's own identity:
 
@@ -240,6 +240,3 @@ curl -s https://ohttp.stopscam.ai/ohttp-configs | xxd | head -5
 
 ---
 
-*I was caught in the cloud no one could see but everyone could feel.*
-
-fr0mthecloud@proton.me
